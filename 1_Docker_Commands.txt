@@ -1,0 +1,14 @@
+1-Run
+docker run hello-world || docker container run hello-world
+
+2-SEARCH
+docker search --help
+docker search nginx
+docker pull nginx
+
+3-CONTAINER -It must have only one application
+a-docker container --help
+b-docker container run --publish 111:80 nginx || docker run -p 1111:80 nginx   -->(80 portunun 1111 portuna yönlendir= localhost:1111)
+c-docker container run --publish 81:80 --detach || docker run -p 81:80 -d   (localhost:81)
+d- docker run -d -p 82:80 --name nginx_my nginx
+e- docker run -d -p 81:80 --name my_nginx --rm nginx  -->(Bir kere durduruktan sonra containeri siler --rm komutu ile)
