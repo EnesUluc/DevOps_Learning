@@ -6,9 +6,27 @@ docker search --help
 docker search nginx
 docker pull nginx
 
-3-CONTAINER -It must have only one application
+3-CONTAINER (It must have only one application)
 a-docker container --help
 b-docker container run --publish 111:80 nginx || docker run -p 1111:80 nginx   -->(80 portunun 1111 portuna yönlendir= localhost:1111)
 c-docker container run --publish 81:80 --detach || docker run -p 81:80 -d   (localhost:81)
 d- docker run -d -p 82:80 --name nginx_my nginx
 e- docker run -d -p 81:80 --name my_nginx --rm nginx  -->(Bir kere durduruktan sonra containeri siler --rm komutu ile)
+
+4-LIST (CONTAINER)
+docker ps
+docker container ps
+docker container ls || docker container ls -al || docker container ls -a
+
+5-START
+docker start <container_name> || docker container start <container_name>
+
+6-STOP
+docker stop <container_id> || docker stop <container_name>
+
+7-DELETE (You should stop the container before delete)
+docker rm <container1_id> <container2_id> || docker rm <container_name>
+docker container prune (removes all the containers -> If they have stopped)
+
+8-DELETE FORCE  
+docker rm -f <container_name> (Removes it even though it runs)
