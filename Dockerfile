@@ -19,10 +19,12 @@ FROM node:22.17.0
 
 # WORKDIR: Çalışma dizini
 WORKDIR /usr/src/app
+# WORKDIR C:\app (Windows)
 
 # COPY: Image koyyalamak için
 # package.json ve package-lock.json dosyalarını kopyala
 COPY package*.json ./
+# COPY . C:\app 
 
 # RUN: İmaj için gerekli yüklemeleri alırız
 # Bağımlılıkları yükle

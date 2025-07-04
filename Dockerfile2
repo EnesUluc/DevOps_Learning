@@ -1,0 +1,22 @@
+FROM python:3.9-slim
+
+ENV APP_NAME="Ubuntu, Dockerfile"
+
+VOLUME /tmp
+
+WORKDIR /app
+
+#Bu satır ev dizinindeki (., yani projenizin bulunduğu yerdeki) requirements.txt dosyasını, Docker konteynerinin içindeki çalışma dizinine (/app) kopyalar.
+COPY requirements.txt requirements.txt
+
+#Bu komut, Docker konteyneri oluşturulurken requirements.txt içinde belirtilen tüm Python kütüphanelerini (örneğin flask, requests, vb.) yükler.
+RUN pip install -r requirements.txt
+
+#Bu satır, bulunduğunuz klasördeki tüm dosya ve klasörleri, konteynerdeki WORKDIR dizinine (/app) kopyalar.
+COPY . .
+
+
+CMD ["python","app.py"]
+
+#docker build -f Dockerfile2 -t flask-app .
+
