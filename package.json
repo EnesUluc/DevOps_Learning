@@ -1,0 +1,24 @@
+{
+  "name": "learn-docker",
+  "version": "1.0.0",
+  "main": "example.js",
+  "scripts": {
+    "start": "node example.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EnesUluc/DevOps_Learning.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EnesUluc/DevOps_Learning/issues"
+  },
+  "homepage": "https://github.com/EnesUluc/DevOps_Learning#readme",
+  "description": "",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}

@@ -1,0 +1,7 @@
+#Docekrfile çalıştırma
+docker build .
+
+#Dockerfile özel bir isimle vermişsek
+docker build -t <special_name> .
+
+docker container run --name node_app -d -p 8081:8081 <special_name>
