@@ -1,0 +1,7 @@
+services:
+  backend_web:
+    container_name: docker-compose-spring
+    restart: on-failure
+    build: ./
+    ports:
+      - "8080:8080"
