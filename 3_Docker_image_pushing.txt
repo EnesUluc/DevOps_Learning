@@ -1,0 +1,16 @@
+1-docker login --username <username>
+
+---------------------
+Dockerfile -> Create a reeository
+docker push ulucenes/my-node.js:tagname
+
+---------------------
+Create your image using Dockerfile
+Image Name:node_project
+#docker image tag <IMAGE_NAME> <DOCKER.HUB.REPOSITORY>
+2-docker image tag node_project:latest ulucenes/my-node.js
+3-docker push ulucenes/my-node.js
+
+4-docker pull ulucenes/my-node.js
+5-docker container run -d -p 8080:8081 --name my-app my-node.js
+

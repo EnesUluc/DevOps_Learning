@@ -1,0 +1,22 @@
+docker ps
+docker container run -d -p 8080:80 --name nginx_terminal nginx_
+
+
+1--Connect a running container 
+docker container exec -it <CONTAINER_NAME> bash
+exec = to start a new command or process within a working container
+-it = interactive terminal -> connect a new terminal and execute commands (interact with a terminal)
+bash = bash terminal
+
+2-- Create a new container then connect its terminal.
+docker container run -it <CONTAINER_NAME> bash 
+
+
+3-- Connect a stopped container's terminal
+docker ps 
+docker stop <CONTAINER_NAME>
+docker container start -ai <CONTAINER_NAME> 
+
+-ai
+-a (attach)= allows you to connect to the container's standard outputs:
+-i (interactive)
