@@ -1,0 +1,35 @@
+#Container'ın standart çıkış ve hata loglarını gösterir.
+docker logs <CONTAINER_ID>
+
+#Son 10 log satırı için
+docker logs --tail 10 <CONTAINER_ID>
+
+#Logları takip etmek için
+docker logs -f <CONTAINER_ID> (-f = --follow)
+
+#Container içindeki aktif süreçleri listele
+docker top <CONTAINER_ID>
+
+#Bir container veya image hakkında bilgi almak, bu container veya image'ın yapılandırması ve durumu hakkında ayrıntılı JSON formatında #bilgi sağlar.
+docker inspect <CONTAINER_ID>
+
+#Çalışan container'ların (CPU, bellek, ağ, disk I/O) gibi kaynaklarının #kullanımını canlı izlemek için kullanılır.
+docker stats <CONTAINER_ID>
+
+#Tüm çalışan container'lar için
+docker stats
+
+#CPU kullanımını görmek için
+docker stats <CONTAINER_ID> --format "table {{.Name}}\t{{.CPUPerc}}"
+
+#Bellek kullanımını görmek için
+docker stats <CONTAINER_ID> --format "table {{.Name}}\t{{.MemUsage}}"
+
+
+
+
+
+
+
+
+
