@@ -1,3 +1,15 @@
+#docker-compose --version
+#docker-compose up | docker-compose  up -d
+#docker-compose -f my-app.yaml up
+#docker-compose down
+#docker-compose restart
+#docker-compose ps
+
+#restart: on-failure ->Container çökmesi halinde otomatik yeniden başlasın. restart: on-failure:3 şeklinde yazarsan en fazla 3 kez dener.
+#restart: no  -> Deafult olandır.Container çalışırken bir hata olursa yeniden başlatılmaz.
+#restart: unless-stopped ->Konteyner, hata verse de, sistem yeniden başlatılsa da hep tekrar başlar.
+#restart: always ->  Konteyner ne olursa olsun her zaman yeniden başlatılır.
+
 services:
   backend_web:
     container_name: docker-compose-spring

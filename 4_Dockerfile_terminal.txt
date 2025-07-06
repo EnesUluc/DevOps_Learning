@@ -19,4 +19,4 @@ docker container start -ai <CONTAINER_NAME>
 
 -ai
 -a (attach)= allows you to connect to the container's standard outputs:
--i (interactive)
+-i (interactive) 
