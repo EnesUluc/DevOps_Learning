@@ -2,7 +2,18 @@
 	"folders": [
 		{
 			"path": "."
+		},
+		{
+			"path": "../../../Masaüstü/Frontend/CSS-2"
+		},
+		{
+			"path": "../../../Masaüstü/Frontend/CSS-1"
+		},
+		{
+			"path": "../../../Masaüstü/Frontend/HTML/01_html/movie_app"
 		}
 	],
-	"settings": {}
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "CSS-2"
+	}
 }

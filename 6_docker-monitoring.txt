@@ -1,0 +1,14 @@
+docker ps | docker container ls
+
+docker logs <CONTAINER_NAME> |docker logs --tail 10 <CONTAINER_NAME> 
+
+docker logs <CONTAINER_NAME> -f (follow the logs currently)
+
+docker top <CONTAINER_NAME> -> Gives process about a running container(PID,PPID,UID,CMD)
+
+docker inspect <CONTAINER_NAME> ->Informations about the container in json format (system properties, config settings, network, health)
+
+
+docker stats <CONTAINER_NAME> ->(CPU,MEM,DISK I/O),
+
+***Monitoring= tis (top - inspect - stats)
