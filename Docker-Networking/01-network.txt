@@ -1,0 +1,99 @@
+Docker containerler arasında ağ iletişimini yönetmek için çeşitli ağ modelleri vardır. 
+
+*Bridge*:Docker'ın varsayılan ağ modelidir.
+    Containerlerın aynı host üzerinde birbiriyle iletişim kurmasını sağlar.Her yeni containerler buraya bağlanır default olarak.
+    Containerlar aynı bridge ağı içindeyse birbirleriyle iletişim kurabilirler. 
+
+docker network create my_network 
+docker run -d --name my_container1 --network my_network nginx
+docker run -d --name my_container2 --network my_network ubuntu
+
+*Host*: Containerin ağ yalıtmını kaldırır. (Remove network isolation
+        between the container and the Docker host.
+        Performans açısından faydalıdır.
+
+docker run -d --network host nginx
+
+*None*: Containeri tamamen izole eder. Ağ 
+        bağlantına ihtiyaç duyumayan ya da kendi özel ağ yapılandırmasını yapmak isteyen uygulamalar içindir.
+        (Completely isolate a container from the host and other containers.)
+docker run -d --network none mysql 
+
+*Overlay*: Docker Swarm veya K8S gibi orchestrator'lar
+           kullanıldığında birden fazla host üzerinde çalışan containerlar arasında ağ oluşturur.
+           (Overlay networks connect multiple Docker daemons together)
+
+docker network create -d overlay my_overlay 
+docker run -d --network my_overlay busybox 
+
+*ipvlan*: IPvlan networks provide full control over both IPv4 and IPv6
+          addressing.
+*macvlan*: 	Assign a MAC address to a container.
+
+--------------------------------------------------------------
+DOCKER SWARM İLE OVERLAY AĞ OLUŞTURMA
+docker swarm init
+docker network create -d overlay my_overlay
+docker service create --name db --network my_overlay postgres
+OR 
+docker service create --name web --network my_overlay nginx
+-------------------------------------------------------------
+*************************************************************
+-------------------------------------------------------------
+AYNI BRİDGE AĞINDAKİ CONTAİNERLAR ARASINDA İLETİŞİM KURMA 
+docker run -d --name web --network my_bridge nginx 
+docker run -d --name app --network my_bridge busybox 
+docker exec -it app ping web
+-------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+-----------
+BONUS BİLGİ (Load Balancing)
+-----------
+Uygulama sunucumuz üzerine gelen Http istekleri yoğunlaştıkça, yani uygulama trafiği arttıkça buna paralel kaynak (İşlemci, Ram v.s.) ihtiyacı doğmaktadır. Bu ihtiyacı karşılamanın çeşitli yöntemleri vardır.
+(distributing incoming network traffic across multiple Docker containers running the same application)
+
+-Scale Up: Mevcut sunucu üzerinde donanımsal kaynak arttırımına gitmek. Genellikle işlemci, Ram upgrade edilerek yapılır.
+
+-Scale Out: Mevcut uygulama sunucusunun bir kopyası daha oluşturularak kaynak arttırımına gitmek.
+
+-Load Balancing: Tam bu anlarda devreye girer. Sunucuların önğne konumlandırılarak gelen Http isteklerini eşit veya kurala bağlı olarak yönlendiren, dağıtan bir araçtır.
+Herhangi bir sunucu çökerse gelen o isteği yönlendirmez.Böylece http istek kaybı olmaz.
+
+-Round Robin: Gelen istekleri eşit olarak ayaktaki sunuculara dağıtır.
+-Ratio: Gelen istekleri belirlediğimiz sınırlara göre dağıtan yöntemdir.
+-Least Connection: Üzerinde en az request olan sunucuya yönlendirir.
+-Ip Hash: Kullanıcı session bilgilerinin kaybolmaması için bu yöntem kullanılabilir
+
+Örnek:
+***nginx.config***
+upstream servers {
+ server 192.168.1.137:5000;
+ server 192.168.1.137:5005;
+}
+server {
+ listen 80;
+ location / {
+   proxy_pass http://servers;
+ }
+}
+-Eşit dağutacak iki port ayarladık.
+***Dockerfile yapılandırmasını için biraz daha araştırma yap.
+---------------------------------------------------------------
+
+
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQLDialect
+spring.datasource.url=jdbc:mysql://localhost:3306/employee_directory
+spring.datasource.username=springstudent
+spring.datasource.password=springstudent
