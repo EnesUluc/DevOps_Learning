@@ -15,9 +15,6 @@ RUN echo "Version: $VERSION"
 RUN echo "Port: $PORT"
 
 
-#Data persist
-VOLUME /tmp
-
 #Port
 EXPOSE 8080
 
@@ -29,6 +26,3 @@ ADD ${JAR_FILE} spring-demo
 
 #Docker container çalışması sırasında varsayılan komutlardır
 ENTRYPOINT [ "java","-jar","spring-demo" ]
-
-#Container sağlıklı çalışıyor mu?
-HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 CMD curl --fail http://localhost:8080 || exit 1

@@ -1,8 +1,0 @@
-
-services:
-  backend_web:
-    container_name: spring-mysql-docker
-    restart: on-failure
-    build: ./
-    ports:
-      - "8080:8080"
