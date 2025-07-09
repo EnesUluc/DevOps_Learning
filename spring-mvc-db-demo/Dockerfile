@@ -19,10 +19,10 @@ RUN echo "Port: $PORT"
 EXPOSE 8080
 
 #Tüm .jar fileleri bul, yeni ismi JAR_FILE olsun
-ARG JAR_FILE=*.jar
+ARG JAR_FILE=target/*.jar
 
 #Projenin yeni ismi app.jar oldu.
-ADD ${JAR_FILE} spring-demo 
+COPY ${JAR_FILE} app.jar
 
 #Docker container çalışması sırasında varsayılan komutlardır
-ENTRYPOINT [ "java","-jar","spring-demo" ]
+ENTRYPOINT [ "java","-jar","/app.jar" ]

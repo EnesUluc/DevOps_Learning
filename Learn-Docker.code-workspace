@@ -11,6 +11,9 @@
 		},
 		{
 			"path": "../../../Masaüstü/Frontend/HTML/01_html/movie_app"
+		},
+		{
+			"path": "../../../../Downloads/01-spring-mvc-thymeleaf-crud-validation"
 		}
 	],
 	"settings": {
