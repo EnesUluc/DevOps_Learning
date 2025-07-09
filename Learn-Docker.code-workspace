@@ -11,12 +11,10 @@
 		},
 		{
 			"path": "../../../Masaüstü/Frontend/HTML/01_html/movie_app"
-		},
-		{
-			"path": "../../../../Downloads/01-spring-mvc-thymeleaf-crud-validation"
 		}
 	],
 	"settings": {
-		"liveServer.settings.multiRootWorkspaceName": "CSS-2"
+		"liveServer.settings.multiRootWorkspaceName": "CSS-2",
+		"java.compile.nullAnalysis.mode": "automatic"
 	}
 }
