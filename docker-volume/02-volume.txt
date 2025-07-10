@@ -1,0 +1,25 @@
+docker search nginx
+docker pull nginx
+
+#nginx-> NGINX is a web server but commonly used as a reverse proxy.
+
+docker container run -d -p 1111:80 --name nginx1 nginx
+
+docker container run -it nginx bash (yeni bir container oluştur terminale bağlan)
+
+docker container exec -it <ID> bash (Çalışan bir containera terminal ile  bağlan)
+
+```
+cd /usr/share/nginx/html --> (50x.html - index.html)
+cat index.html
+cat >> index.html (You can add some text using html properties, then the changes will be added)
+```
+----------------------------------------------------------
+C:\\Users\\... (my index html path with 2 back-slash(\\))
+docker run -d -p 2222:80 --name my_nginx -v my_html_path:/usr/share/nginx/html nginx
+----------------------------------------------------------
+
+```bash
+docker container run -d -p 2222:80 -v C:\\Users\\HP\\OneDrive\\Documente\\VSCode\\Learn-Docker\\docker-volume\\nginx:/usr/share/nginx/html nginx
+```
+    

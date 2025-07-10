@@ -1,0 +1,57 @@
+Docker volume'lar, containerlar arasında veri paylaşımını kolaylaştırır ve veri kalıcılığını sağlar.
+
+Docker volume, containerların veri depolamak için kullanabileceği, Docker tarafından yönetilen bir depolama birimidir.
+
+Volume''lar containerların yaşam döngüsünden bağımsızdır.Container silinse bile veri kaybolmaz.
+
+```bash
+docker volume create my_volume
+```
+
+Bir container başlatılırken volume'ı bağlamak için '-v' ya da '--mount'kullanılır.
+```bash
+docker run -d -v my_volume:/app nginx
+
+-my_volume adında bir volume oluşturulur ve container içindeki /app dizinine bağlanır.
+
+Listelemek için
+```bash
+docker volume ls
+
+detaylı bilgi için
+```bash
+docker volume inspect my_volume
+
+silmek için
+```bash
+docker volume rm my_volume
+
+###Bind mount
+Bir mounts, host dosya sistemindeki belirli bir dizini container'a bağlar.
+Bind mounts, Docker tarafından yönetilemez ve host dosya sistemindeki değişiklikler container'a yansıtılır.
+
+```bash
+docker run -d -v /host/path:/container/path nginx
+```
+Bu komut, host makinedeki '/host/path' dizinini container içindeki '/container/path' dizinine bağlar.
+
+
+###Named mounts
+Docekr tarafından yönetilen ve Docker volume komutlarıyla oluşturulabilen volume'lardır.
+Bind mounts'tan daha esnektir ve Docker'ın volume önetim özelliklerinden faydalanılır.   
+```bash
+docker volume create my_volume 
+docker run -d -v my_volume:/container/path nginx
+
+###Web Siteleri 
+Statik web siteleri, Docker containerlerında barındırılabilir ve volumelar kullanılarak host makinedeki statik dosyalar containera bağlanılabilir
+
+my_website/
+  -index.html
+  -images/
+    -logo.png
+
+```bash 
+docker run -d -p 80:80 -v /path/to/my_website:/usr/share/nginx/html nginx
+```
+bu komut host makinedeki dizini alır, nginx'in statik dosyalarını barndırdığı 'usr/share/nginx/html' dizinine bağlar.
