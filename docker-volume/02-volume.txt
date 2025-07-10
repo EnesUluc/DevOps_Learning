@@ -22,4 +22,37 @@ docker run -d -p 2222:80 --name my_nginx -v my_html_path:/usr/share/nginx/html n
 ```bash
 docker container run -d -p 2222:80 -v C:\\Users\\HP\\OneDrive\\Documente\\VSCode\\Learn-Docker\\docker-volume\\nginx:/usr/share/nginx/html nginx
 ```
-    
+#####################################################
+docker volume ls 
+
+docker volume create my_mysql
+docker volume inspect my_mysql
+docker volume rm my_mysql
+
+docker container run -d -p 3333:3306 --rm my_mysql:/mysql mysql
+
+#####################################################
+Volume Örneği
+docker pull mysql 
+
+docker container run -d -p 3307:3306 --name my_db -e MYSQL_ROOT_PASSWORD=root mysql
+
+docker exec -it my_db bash
+
+docker container inspect my_db
+
+#Destination volume     "/var/lib/mysql"
+mysql -u root -p 
+password: root
+
+#Database oluştur
+#Database seç 
+#Table oluştur
+#Tabloya veri ekle 
+#Tablodan veri göster
+
+
+### STEP-2
+docker volume create mysql_db
+
+DK 16.14 KALAN
