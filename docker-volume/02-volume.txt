@@ -42,17 +42,42 @@ docker exec -it my_db bash
 docker container inspect my_db
 
 #Destination volume     "/var/lib/mysql"
-mysql -u root -p 
+mysql -u root -p   (mysql' e giriş yap verdiğin password ile)
 password: root
 
-#Database oluştur
-#Database seç 
-#Table oluştur
-#Tabloya veri ekle 
-#Tablodan veri göster
+MYSQL DATABASE 
+----------------------------------------------------------------------------------
+#Create a db
+CREATE SCHEMA `docker_volume` DEFAULT CHARACTER SET utf8 COLLATE utf8_turkish_ci;
+
+#Use this db 
+use `docker_volume`;
+
+#Create a table
+CREATE TABLE `docker_volume`.`student`(
+   `id` INT NOT NULL AUTO_INCREMENT,
+   `name` VARCHAR(500) NULL DEFAULT 'is required' ,
+   `surname` VARCHAR(500) NULL DEFAULT 'is required' ,
+   `created_date` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP, 
+
+   PRIMARY KEY(`id`)
+);
+
+#Add data to the table
+INSERT INTO `docker_volume`.`student` (`name`,`surname`) VALUES ('John','Doe');
+INSERT INTO `docker_volume`.`student` (`name`,`surname`) VALUES ('Tom','Standford');
+
+#Show the table
+SELECT * FROM student;
+
+SHOW DATABASES;
+
+------------------------------------------------------------------------------------
 
 
 ### STEP-2
 docker volume create mysql_db
+docker volume ls
+docker volume inspect mysql_db 
 
-DK 16.14 KALAN
+
