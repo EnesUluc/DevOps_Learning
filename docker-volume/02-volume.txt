@@ -76,13 +76,12 @@ SHOW DATABASES;
 
 
 ### STEP-2
-docker volume create mysql_db
-docker volume ls
-docker volume inspect mysql_db 
+docker volume ls - (my_db (I have craeted db above and added a table named student))
+docker volume inspect my_db 
 
-docker volume inspect mysql_db
 
-docker container run -d -p 3308:3306 --name special_msql_db -v mysql_db:/var/lib/mysql  -e MYSQL_ROOT_PASSWORD=root mysql
+docker container run -d -p 3308:3306 --name special_mysql_db -v my_db:/var/lib/mysql  -e MYSQL_ROOT_PASSWORD=root mysql
+(Now you are using the db that you created before.)
 
 docker exec -it special_msql_db bash
 mysql -u root -p 
