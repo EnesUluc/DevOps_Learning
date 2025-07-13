@@ -80,4 +80,12 @@ docker volume create mysql_db
 docker volume ls
 docker volume inspect mysql_db 
 
+docker volume inspect mysql_db
 
+docker container run -d -p 3308:3306 --name special_msql_db -v mysql_db:/var/lib/mysql  -e MYSQL_ROOT_PASSWORD=root mysql
+
+docker exec -it special_msql_db bash
+mysql -u root -p 
+password: root
+
+SHOW DATABASES;
