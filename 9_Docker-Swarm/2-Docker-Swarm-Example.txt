@@ -1,0 +1,42 @@
+https://labs.play-with-docker.com/
+Copy: ctrl+insert
+Paste: shift+insert
+
+Step-1
+##############################################
+
+(Bu kodları genel müdür yazar gibi düşün, buradan aldığı tokenler ile de müdür yardımcıları ve çalışanlar üretirsin.)
+docker swarm init --advertise-addr 192.168.0.68
+docker swarm join-token manager (It will return a token)
+docker swarm join-token worker
+(They will give me a token for adding managers and workers.)
+    
+    (Manager eklemek için)
+    docker swarm join --token SWMTKN-1-03ojpotj1xl2gowrb1l76skx1lw2qqolfmxhwogchro37wxjav-aujf27fhsvqkmcvnl826k2774 192.168.0.68:2377
+
+
+    (Worker eklemek için)
+    docker swarm join --token SWMTKN-1-03ojpotj1xl2gowrb1l76skx1lw2qqolfmxhwogch
+ro37wxjav-5t3edwkez4qgca52q2gjgzdus 192.168.0.68:2377
+
+
+
+docker service ls
+docker service create --name deneme -p 4444:80 --replicas=9 nginx
+
+docker ps 
+docker service ps deneme (You can see the replicas, a worker cannot run this command they are not a manager)
+
+Step-2 (Pasif managerlerden biri seçiliyken)
+#######################################################
+
+docker ps
+docker container rm -f <container_id> (O manager'in yönettiği containeri durdurur.)
+
+
+
+
+Step-3
+############################################################
+
+Bir manager veya worker silersen, sistem onun iş yüklerini diğerlerine dağıtır.
