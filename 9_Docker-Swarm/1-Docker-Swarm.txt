@@ -1,0 +1,125 @@
+Docker Swarm
+    -Swarm mode is an advanced feature for managing a cluster of Docker daemons.
+    -Docker Swarm is a container orchestration tool for clustering and scheduling Docker
+     containers.
+
+Swarm Mode
+    -Swarm mode is a built-in feature of the Docker engine and is used to deploy, scale, and manage containers.
+    -It offers features such as load balancing, automatic restart, and running containers on different
+     hosts.
+
+    
+Enabling Swarm Mode (Swarm mode etkinleştirme)
+    ```bash
+    docker swarm init 
+    ```
+    - Bu komut, güncel Docker host'unu swarm cluster'da bir manager node olarak başlatır.
+    - Komutu çalıştırdıktan sonra alacağımız çıktı diğer node'ları cluster'e eklemek için token içerir.
+
+
+     Başka bir docker host'a worker node eklemek için:
+     ```bash
+     docker swarm join --token <worker-token> <manager-ip>:2377
+     ```
+
+    Başka bir docker host'a manager node eklemek için:
+    ```bash
+    docker swarm join --token <manager-token> <manager-ip>:2377
+    ```
+
+    Lists all the nodes at Swarm cluster:
+    ```bash
+    docker node ls
+    ```
+
+    Gets information about a node:
+    ```bash
+    docker node inspect <node-id>
+
+    Bir node'un rolünü worker'dan manager'a ya da tersi yapmak için:
+    ```bash
+    docker node promote <node-id>
+    docker node demote <node-id>
+    ```
+
+    Node'u cluster'dan kaldırmak için: 
+    ```bash
+    docker node rm <node-id>
+    ```
+
+Service and Stack
+-----------------
+Service
+
+    -Swarm'da container'lar servisler olarak adlandırılır. Bir servis, belirli bir container image'ını 
+     çalıştıran ve belirli sayıda replica'ya sahip olabilen bir birimdir.
+
+    Yeni bir servis oluşturmak:
+        ```bash
+        docker service create --name my_service --replicas 3 nginx
+        ```
+    Servisleri listelemek:
+    ```bash
+        docker service ls
+    ```
+
+    Servis detayları:
+    ```bash
+    docker service inspect my_service
+    ```
+
+    Servis replicası değiştirmek, ölçeklendirmek için:
+    ```bash
+    docker service scale my_service=5
+    ```
+
+    Servis güncellemek:
+    ```bash
+    docker service update --image nginx:latest my_service
+    ```
+
+    Servisi kaldırmak:
+    ```bash
+    docker service rm my_service
+    ```
+
+Stack
+    Stack'ler Docker Compose dosyalarını kullanarak birden fazla servisi yönetmek için kullanılır.
+    Bir stack, bir uygulamanın tüm servislerini, ağlarını ve hacimlerini tanımlayan bir koleksiyondur. 
+
+    Bu komut docker-compose.yml dosyasındaki tanımlamalara göre bir stack oluşturur ve başlatır.
+    ```bash
+    docker stack depoloy -c docker-compose.yml my_stack
+    ```
+
+    Stack'ları listelemek:
+    ```bash
+    docker stack ls
+    ```
+
+    Stack içindeki servisleri listelemek:
+    ```bash
+    docker stack services my_stack
+    ```
+
+    Stack hakkında bilgi almak:
+    ```bash
+    docker stack pd my_stack
+    ```
+
+    Stack kaldırmak:
+    ```bash
+    docker stack rm my_stack
+    ```
+
+    Özet:
+    ***Stack'ler Docker Compose dosyalarını kullanarak birden fazla servisi yönetir.
+
+
+
+    docker stack config	->Outputs the final config file, after doing merges and interpolations
+    docker stack deploy	->Deploy a new stack or update an existing stack
+    docker stack ls	->List stacks
+    docker stack ps	->List the tasks in the stack
+    docker stack rm	->Remove one or more stacks
+    docker stack services ->List the services in the stack
