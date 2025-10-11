@@ -1,7 +1,8 @@
 Docker containerler arasında ağ iletişimini yönetmek için çeşitli ağ modelleri vardır. 
 
 *Bridge*:Docker'ın varsayılan ağ modelidir.
-    Containerlerın aynı host üzerinde birbiriyle iletişim kurmasını sağlar.Her yeni containerler buraya bağlanır default olarak.
+    Containerlerın aynı host üzerinde birbiriyle iletişim kurmasını sağlar.
+    Her yeni container buraya bağlanır default olarak.
     Containerlar aynı bridge ağı içindeyse birbirleriyle iletişim kurabilirler. 
 
 docker network create my_network 
@@ -32,7 +33,7 @@ docker run -d --network my_overlay busybox
 
 --------------------------------------------------------------
 DOCKER SWARM İLE OVERLAY AĞ OLUŞTURMA
-docker swarm init
+docker swarm init --advertise-addr <ip_address>
 docker network create -d overlay my_overlay
 docker service create --name db --network my_overlay postgres
 OR 

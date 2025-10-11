@@ -20,3 +20,6 @@ docker container start -ai <CONTAINER_NAME>
 -ai
 -a (attach)= allows you to connect to the container's standard outputs:
 -i (interactive) 
+
+4-- You can display the logs even if it is in the attach mode
+docker attach <container_id>
